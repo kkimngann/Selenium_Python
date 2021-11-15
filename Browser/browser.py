@@ -14,28 +14,46 @@ class Browser():
         self.browser = self.open_browser()
 
     def open_browser(self):
-        os_name = config.get("OS", "os_name")
-        config_menu_name = "BROWSER PATH " + os_name
-        if self.browser_name == 'ie':
-            browser_path = config.get(config_menu_name, "ie_path")
-            browser = webdriver.Ie(executable_path=browser_path)
-            time.sleep(5)
-        elif self.browser_name == 'chrome':
-            browser_path = config.get(config_menu_name, "chrome_path")
-            browser = webdriver.Chrome(browser_path)
+        # os_name = config.get("OS", "os_name")
+        # config_menu_name = "BROWSER PATH " + os_name
+        # if self.browser_name == 'ie':
+        #     browser_path = config.get(config_menu_name, "ie_path")
+        #     browser = webdriver.Ie(executable_path=browser_path)
+        #     time.sleep(5)
+        # elif self.browser_name == 'chrome':
+        #     browser_path = config.get(config_menu_name, "chrome_path")
+        #     browser = webdriver.Chrome(browser_path)
+        #
+        # elif self.browser_name == 'firefox':
+        #     browser_path = config.get(config_menu_name, "firefox_path")
+        #     browser = webdriver.Firefox(executable_path=browser_path)
+        #
+        # elif self.browser_name == 'edge':
+        #     browser = webdriver.Edge()
+        # elif self.browser_name == 'safari':
+        #     browser = webdriver.Safari()
 
-        elif self.browser_name == 'firefox':
-            browser_path = config.get(config_menu_name, "firefox_path")
-            browser = webdriver.Firefox(executable_path=browser_path)
-
-        elif self.browser_name == 'edge':
-            browser = webdriver.Edge()
-        elif self.browser_name == 'safari':
-            browser = webdriver.Safari()
-
-        browser.implicitly_wait(5)
-        browser.maximize_window()
-        return browser
+        if self.browser_name == "chrome":
+            options = webdriver.ChromeOptions()
+            driver = webdriver.Remote(
+                command_executor='http://selehub.aandd.io/wd/hub',
+                options=options
+            )
+        elif self.browser_name == "firefox":
+            options = webdriver.FirefoxOptions()
+            driver = webdriver.Remote(
+                command_executor='http://selehub.aandd.io/wd/hub',
+                options=options
+            )
+        elif self.browser_name == "edge":
+            options = webdriver.EdgeOptions()
+            driver = webdriver.Remote(
+                command_executor='http://selehub.aandd.io/wd/hub',
+                options=options
+            )
+        driver.implicitly_wait(5)
+        driver.maximize_window()
+        return driver
 
     def find_element(self, xpath_element):
         try:

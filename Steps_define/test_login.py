@@ -10,7 +10,6 @@ from Page.Page.loginpage import LoginPage
 from pytest_bdd import scenarios, given, when, then, parsers
 import configparser
 
-
 config = configparser.ConfigParser()
 config.read('auto_test.cfg')
 
@@ -23,8 +22,6 @@ def setup():
     # print('----------------------START TEST-------------------------')
     global obj_browser
     obj_browser = Browser(BROWSER_NAME)
-
-
 
 def teardown():
     # print('------------------------END TEST-------------------------')
@@ -70,4 +67,3 @@ def check_message(message):
     expected = message
     actual = page.get_error_message()
     assert expected.strip() == actual.strip()
-
