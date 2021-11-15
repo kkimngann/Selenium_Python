@@ -35,6 +35,7 @@ class Browser():
 
         if self.browser_name == "chrome":
             options = webdriver.ChromeOptions()
+            options.add_argument("start-maximized")
             driver = webdriver.Remote(
                 command_executor='http://selehub.aandd.io/wd/hub',
                 options=options
