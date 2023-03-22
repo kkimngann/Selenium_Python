@@ -18,11 +18,11 @@ BROWSER_NAME = config.get('BROWSER', 'browser')
 class test_basepage:
     def __init__(self):
         print("Hàm khởi tạo lớp cha")
-        self.driver = Browser(BROWSER_NAME)
+        self.browser = Browser(BROWSER_NAME)
 
     def setup(self):
         print('----------------------START TEST-------------------------')
 
     def teardown(self):
         print('------------------------END TEST-------------------------')
-        self.driver.quit()
+        self.browser.driver.quit()

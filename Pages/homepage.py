@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-class HomePage:
-    btn_login_locator = "//a[contains(@href, \"login\")]"
+from selenium.webdriver.common.by import By
 
-    def __init__(self, driver):
-        self.driver = driver
+
+class HomePage:
+    btn_login_locator = '//a[contains(@href, "login")]'
+
+    def __init__(self, browser):
+        self.browser = browser
 
     def choose_btn_login(self):
-        element = self.driver.find_element(self.btn_login_locator)
-        self.driver.click_element(element, 2)
+        element = self.browser.find_element_by_xpath(self.btn_login_locator)
+        self.browser.click_element(element, 2)
         return True

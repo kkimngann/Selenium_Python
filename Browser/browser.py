@@ -20,7 +20,6 @@ class Browser:
         self.driver = self.open_browser()
 
     def open_browser(self):
-        global driver
         os_name = config.get("OS", "os_name")
         config_menu_name = "BROWSER PATH " + os_name
         if self.browser_name == 'ie':
@@ -29,10 +28,11 @@ class Browser:
             time.sleep(5)
         elif self.browser_name == 'chrome':
             chromedriver_path = config.get(config_menu_name, "chrome_path")
-            driver = webdriver.Chrome(executable_path=chromedriver_path)
+            opt = webdriver.ChromeOptions()
+            opt.add_argument("--remote-allow-origins=*")
+            driver = webdriver.Chrome(executable_path=chromedriver_path, options=opt)
             driver.implicitly_wait(5)
             driver.maximize_window()
-            driver.get('https://www.google.com')
             return driver
         elif self.browser_name == 'firefox':
             browser_path = config.get(config_menu_name, "firefox_path")
@@ -43,12 +43,9 @@ class Browser:
         elif self.browser_name == 'safari':
             driver = webdriver.Safari()
 
-
-
-
-    def find_element(self, xpath_element):
+    def find_element_by_xpath(self, xpath_locator):
         try:
-            element = self.driver.find_element(By.XPATH, xpath_element)
+            element = self.driver.find_element(By.XPATH, xpath_locator)
             return element
         except:
             return False

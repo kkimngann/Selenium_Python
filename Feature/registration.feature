@@ -13,7 +13,7 @@ Feature Registration
     And User input email <email>
     And User input password <password>
     And User input confirm password <confirm_password>
-    And User select Sign up
+    And User select submit  Sign up
     Examples:
       | name | email                 | password | confirm_password |
       |      | ngan.nguyen@gmail.com |          |                  |
