@@ -76,3 +76,14 @@ def step_impl(password_message):
     if password_message != 'None':
         actual_message = login_page.get_error_message_password()
         assert actual_message == password_message
+
+
+@when("User click on the user avatar")
+def step_impl():
+    home_page.click_user_avatar()
+
+
+@then(parse("Show current user email login is correct {email}"))
+def step_impl(email):
+    actual_email = home_page.get_current_email()
+    assert email in actual_email

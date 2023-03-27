@@ -16,6 +16,17 @@ Feature Login
       | ngan.nguyen13           | 12345678 | The email must be a valid email address. | None                                        |
       | ngan.nguyen13@gmail.com | 12345678 | The selected email is invalid.           | None                                        |
 
+  Scenario Outline: : Verify that user able to login with correct <email>, <password>
+    When User input email <email>
+    And User input password <password>
+    And User select Login
+    And User click on the user avatar
+    Then Show current user email login is correct <email>
+    Examples:
+      | email                  | password  |
+      | kkimngann1@yopmail.com | 123456789 |
+
+
 
 
 

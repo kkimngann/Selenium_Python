@@ -52,6 +52,13 @@ class Browser:
         except:
             return False
 
+    def find_child_element_by_xpath(self,element,xpath_locator):
+        try:
+            child_element = element.find_element(By.XPATH, xpath_locator)
+            return child_element
+        except:
+            return False
+
     def click_element(self, element, delay_time):
         try:
             element.click()
@@ -70,7 +77,7 @@ class Browser:
 
     def get_text_element(self, element):
         try:
-            return element.text
+            return element.text.strip()
         except:
             return ''
 

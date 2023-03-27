@@ -1,3 +1,5 @@
+import time
+
 from pytest_bdd import scenarios, given, when, parsers, then
 from pytest_bdd.parsers import parse
 
@@ -57,6 +59,8 @@ def step_impl(name):
 
 @when(parse('User input email {email}'))
 def step_impl(email):
+    if email == "auto":
+        email = "test" + str(time.time()) + "@yopmail.com"
     print('User input email %s' % email)
     register_page.input_email(email)
 
@@ -85,3 +89,19 @@ def step_impl(password_message):
     if password_message != 'None':
         actual_message = register_page.get_error_message_password()
         assert actual_message == password_message
+
+
+@then("Show correct message register successful")
+def step_impl():
+    register_page.check_login_successful()
+
+
+@when("User click on the user avatar")
+def step_impl():
+    home_page.click_user_avatar()
+
+
+@then("Show current user email login is correct")
+def step_impl():
+    actual_email = home_page.get_current_email()
+    assert "@yopmail" in actual_email
