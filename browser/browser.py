@@ -3,12 +3,9 @@
 import configparser
 import time
 
-from behave.formatter import null
 from selenium import webdriver
-from selenium.webdriver.common.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
 
 config = configparser.ConfigParser()
 config.read('auto_test.cfg')
@@ -22,11 +19,7 @@ class Browser:
     def open_browser(self):
         os_name = config.get("OS", "os_name")
         config_menu_name = "BROWSER PATH " + os_name
-        if self.browser_name == 'ie':
-            browser_path = config.get(config_menu_name, "ie_path")
-            driver = webdriver.Ie(executable_path=browser_path)
-            time.sleep(5)
-        elif self.browser_name == 'chrome':
+        if self.browser_name == 'chrome':
             chromedriver_path = config.get(config_menu_name, "chrome_path")
             opt = webdriver.ChromeOptions()
             opt.add_argument("--remote-allow-origins=*")
@@ -37,11 +30,20 @@ class Browser:
         elif self.browser_name == 'firefox':
             browser_path = config.get(config_menu_name, "firefox_path")
             driver = webdriver.Firefox(executable_path=browser_path)
+            driver.implicitly_wait(5)
+            driver.maximize_window()
+            return driver
 
+        """
         elif self.browser_name == 'edge':
             driver = webdriver.Edge()
+            return driver
         elif self.browser_name == 'safari':
             driver = webdriver.Safari()
+            driver.implicitly_wait(5)
+            driver.maximize_window()
+            return driver
+        """
 
     def find_element_by_xpath(self, xpath_locator):
         try:

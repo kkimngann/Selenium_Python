@@ -6,7 +6,7 @@ from pages.loginpage import LoginPage
 from pages.registerpage import RegisterPage
 import configparser
 
-from tests.step_defs.test_basepage import test_basepage
+from tests.step_defs.base_steps import base_steps
 
 config = configparser.ConfigParser()
 config.read('auto_test.cfg')
@@ -18,9 +18,12 @@ BROWSER_NAME = config.get('BROWSER', 'browser')
 scenarios('../features/registration.feature')
 
 
-class test_registration(test_basepage):
+class test_registration(base_steps):
     def __init__(self):
         super().__init__()
+
+    def tearDown(self):
+        super().teardown()
 
 
 test_page = test_registration()

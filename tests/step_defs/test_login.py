@@ -5,7 +5,7 @@ import os
 
 from pytest_bdd.parsers import parse
 
-from tests.step_defs.test_basepage import test_basepage
+from tests.step_defs.base_steps import base_steps
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pytest_bdd import scenarios, given, when, then
@@ -22,7 +22,7 @@ BROWSER_NAME = config.get('BROWSER', 'browser')
 scenarios('../features/login.feature')
 
 
-class test_login(test_basepage):
+class test_login(base_steps):
     def __init__(self):
         super().__init__()
 

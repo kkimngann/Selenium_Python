@@ -1,12 +1,14 @@
-# automation_ui
+# Python Selenium
 ------------------Read me-------------------
 ````
 Python 3.10
 Python packages: command "pip3 install -r requirements.txt"
-steps 1: Update OS name and browser name at auto_test.cfg
-steps 2: Open command line in folder automation_ui
-steps 3: Run
-Linux/Mac: "pytest --html=log.html Steps_define/test_login.py -s"
-Window: "pytest --html=log.html Steps_define\test_login.py -s"
-steps 4: Wait for done and check result in file log.html
+1: Update browser name at auto_test.cfg
+2: Open command line in folder root folder
+3:  
+Command to run all test: pytest --alluredir=allure-results tests
+Comment to run specific test: pytest --alluredir=allure-results tests/steps_defs/<filetest>.py
+4: Wait for done
+5: Command to generate report: allure generate --clean
+6: To view the report please open file allure-report>>index.html
 ````
