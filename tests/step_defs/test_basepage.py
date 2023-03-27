@@ -4,8 +4,8 @@ import pytest
 import sys
 import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from Browser.browser import Browser
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+from browser.browser import Browser
 import configparser
 
 config = configparser.ConfigParser()
@@ -24,5 +24,6 @@ class test_basepage:
         print('----------------------START TEST-------------------------')
 
     def teardown(self):
+
         print('------------------------END TEST-------------------------')
         self.browser.driver.quit()

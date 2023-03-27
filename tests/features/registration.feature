@@ -13,7 +13,8 @@ Feature Registration
     And User input email <email>
     And User input password <password>
     And User input confirm password <confirm_password>
-    And User select submit  Sign up
+    And User select submit Sign up
+    Then Show correct error password message <password_message>
     Examples:
-      | name | email                 | password | confirm_password |
-      |      | ngan.nguyen@gmail.com |          |                  |
+      | name | email                 | password | confirm_password | password_message                          |
+      | Ngan | ngan.nguyen@gmail.com | 12345678 | 123456789        | The password confirmation does not match. |
