@@ -5,8 +5,6 @@ Feature Registration
 
   Background:
     Given User access the website
-    And User select button Login
-    And User select Sign up
 
 
   Scenario Outline: Verify that user not able to registration with invalid <name>, <email>, <password>, <confirm_password>
@@ -16,11 +14,11 @@ Feature Registration
   And User input confirm password <confirm_password>
   And User select submit Sign up
   Then Show correct error password message <password_message>
+  And Show correct error email message <email_message>
   Examples:
-    | name | email                  | password  | confirm_password | password_message                          |
-    | Ngan | ngan.nguyen@gmail.com  | 12345678  | 123456789        | The password confirmation does not match. |
-    | Ngan | kkimngann1@yopmail.com | 123456789 | 123456789        | The email has already been taken.         |
-
+    | name | email                  | password  | confirm_password | password_message                          | email_message                     |
+    | Ngan | ngan.nguyen@gmail.com  | 12345678  | 123456789        | The password confirmation does not match. | None                              |
+    | Ngan | kkimngann1@yopmail.com | 123456789 | 123456789        | None                                      | The email has already been taken. |
 
   Scenario Outline: Verify that user able to registration with valid data
     When User input name <name>

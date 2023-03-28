@@ -5,6 +5,7 @@ class RegisterPage:
     input_confirm_password_locator = '//input[@id="password_confirmation"]'
     button_signup_locator = '//button[@id="submit_button"]'
     error_password_locator = input_password_locator + '/following-sibling::div/strong'
+    error_email_locator = input_email_locator + '/following-sibling::div/strong'
     header_message_locator = '//div[@id="kt_docs_toast_toggle"]'
     header_title_locator = '//strong'
     header_body_locator = '//div[contains(@class, "toast-body")]'
@@ -40,6 +41,11 @@ class RegisterPage:
 
     def get_error_message_password(self):
         element = self.browser.find_element_by_xpath(self.error_password_locator)
+        message = self.browser.get_text_element(element)
+        return message
+
+    def get_error_email_password(self):
+        element = self.browser.find_element_by_xpath(self.error_email_locator)
         message = self.browser.get_text_element(element)
         return message
 

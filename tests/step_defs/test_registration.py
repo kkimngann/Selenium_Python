@@ -91,6 +91,14 @@ def step_impl(password_message):
         assert actual_message == password_message
 
 
+@then(parse('Show correct error email message {email_message}'))
+def step_impl(email_message):
+    print('Show correct error email message %s' % email_message)
+    if email_message != 'None':
+        actual_message = register_page.get_error_email_password()
+        assert actual_message == email_message
+
+
 @then("Show correct message register successful")
 def step_impl():
     register_page.check_login_successful()
