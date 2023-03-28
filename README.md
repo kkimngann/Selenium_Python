@@ -1,5 +1,4 @@
 # Python Selenium
-------------------Read me-------------------
 ````
 Python 3.10
 Python packages: command "pip3 install -r requirements.txt"
